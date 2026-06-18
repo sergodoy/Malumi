@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malumi | Regalos y Arreglos Florales Personalizados</title>
+    <!-- Tailwind CSS para los estilos rápidos y modernos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts para darle un toque elegante -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        flor: {
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            500: '#ec4899',
+                            600: '#db2777',
+                            900: '#831843',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Transiciones suaves para el cambio de colores del SVG */
+        .svg-part {
+            transition: fill 0.4s ease, stroke 0.4s ease;
+        }
+        /* Ocultar scrollbar en los contenedores de colores para móviles */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-flor-50 text-gray-800 antialiased font-sans flex flex-col min-h-screen">
+
+    <!-- Navegación -->
+    <nav class="bg-white/80 backdrop-blur-md fixed w-full z-50 border-b border-flor-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-serif text-3xl font-bold text-flor-600 italic">Malumi</a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-gray-600 hover:text-flor-500 transition-colors">Inicio</a>
+                    <a href="#crea-tu-ramo" class="text-gray-600 hover:text-flor-500 transition-colors">Crea tu Ramo</a>
+                    <a href="#sobre-nosotros" class="text-gray-600 hover:text-flor-500 transition-colors">Nosotros</a>
+                    <a href="#contacto" class="text-gray-600 hover:text-flor-500 transition-colors">Contacto</a>
+                </div>
+                <!-- Botón móvil (simplificado) -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-600 hover:text-flor-600 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+        <div class="md:w-1/2 text-center md:text-left">
+            <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                Regala emociones, <span class="text-flor-500 italic">diseñadas por ti.</span>
+            </h1>
+            <p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto md:mx-0">
+                En Malumi creemos que cada persona es única. Por eso, te invitamos a personalizar cada detalle de tu arreglo floral para crear un regalo verdaderamente inolvidable.
+            </p>
+            <a href="#crea-tu-ramo" class="inline-block bg-flor-600 text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-flor-500 transition-colors shadow-lg shadow-flor-500/30 transform hover:-translate-y-1">
+                Personalizar mi Ramo Ahora
+            </a>
+        </div>
+        <div class="md:w-1/2 relative">
+            <div class="absolute inset-0 bg-flor-200 rounded-full blur-3xl opacity-50"></div>
+            <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hermoso arreglo floral" class="relative z-10 rounded-3xl shadow-2xl object-cover h-[500px] w-full">
+        </div>
+    </section>
+
+    <!-- Customizador Section -->
+    <section id="crea-tu-ramo" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-4">Crea tu Ramo Perfecto</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Selecciona los colores de cada parte de tu regalo. Podrás ver los cambios en tiempo real antes de realizar tu pedido.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-12 items-start">
+                
+                <!-- PREVISUALIZACIÓN (SVG DIBUJADO A MANO) -->
+                <div class="w-full lg:w-1/2 bg-flor-50 rounded-3xl p-8 flex justify-center items-center relative shadow-inner">
+                    <div class="absolute top-4 left-4 bg-white px-4 py-2 rounded-full shadow-sm text-sm font-medium text-flor-600">Vista Previa</div>
+                    
+                    <svg viewBox="0 0 400 500" class="w-full max-w-md drop-shadow-2xl h-[500px]" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 3. Envoltorio (Fondo) -->
+                        <path id="svg-envoltorio-back" class="svg-part" d="M120 180 L280 180 L220 450 L180 450 Z" fill="#E5E7EB" />
+                        
+                        <!-- 2. Flores Secundarias -->
+                        <g id="svg-secundarias" class="svg-part" fill="#FBCFE8">
+                            <!-- Hojas/Ramas de fondo -->
+                            <path d="M150 170 Q130 140 100 150 Q130 180 150 170" fill="#4ade80" opacity="0.6"/>
+                            <path d="M250 170 Q270 140 300 150 Q270 180 250 170" fill="#4ade80" opacity="0.6"/>
+                            <!-- Flores pequeñas -->
+                            <circle cx="130" cy="180" r="30"/>
+                            <circle cx="270" cy="180" r="30"/>
+                            <circle cx="150" cy="130" r="35"/>
+                            <circle cx="250" cy="130" r="35"/>
+                            <circle cx="200" cy="100" r="30"/>
+                            <circle cx="110" cy="220" r="25"/>
+                            <circle cx="290" cy="220" r="25"/>
+                        </g>
+
+                        <!-- 1. Rosa Principal -->
+                        <g id="svg-rosa" class="svg-part" fill="#EF4444">
+                            <!-- Pétalos exteriores -->
+                            <path d="M200 80 C130 80 130 160 200 200 C270 160 270 80 200 80 Z"/>
+                            <!-- Pétalos medios -->
+                            <path d="M200 110 C160 110 160 160 200 180 C240 160 240 110 200 110 Z" fill="black" fill-opacity="0.15"/>
+                            <!-- Centro de la rosa -->
+                            <path d="M200 130 C180 130 180 160 200 170 C220 160 220 130 200 130 Z" fill="black" fill-opacity="0.3"/>
+                            <!-- Espirales del centro -->
+                            <path d="M190 145 Q200 135 210 145 Q215 155 200 160 Q185 155 190 145 Z" fill="black" fill-opacity="0.4"/>
+                        </g>
+
+                        <!-- 3. Envoltorio (Frente) -->
+                        <path id="svg-envoltorio-front" class="svg-part" d="M100 250 Q200 300 300 250 L230 450 L170 450 Z" fill="#F3F4F6"/>
+                        <path class="svg-part" d="M100 250 Q200 300 300 250" fill="none" stroke="#D1D5DB" stroke-width="2"/>
+                        
+                        <!-- Dobleces del envoltorio -->
+                        <path d="M170 450 L140 320" fill="none" stroke="#D1D5DB" stroke-width="1" opacity="0.5"/>
+                        <path d="M230 450 L260 320" fill="none" stroke="#D1D5DB" stroke-width="1" opacity="0.5"/>
+
+                        <!-- 4. Lazo -->
+                        <g id="svg-lazo" class="svg-part" fill="#FBBF24">
+                            <!-- Cinta alrededor -->
+                            <path d="M150 330 Q200 350 250 330 L245 350 Q200 370 155 350 Z"/>
+                            <!-- Colas del lazo -->
+                            <path d="M195 350 L170 420 L185 425 L200 360 Z"/>
+                            <path d="M205 350 L230 420 L215 425 L200 360 Z"/>
+                            <!-- Nudo central -->
+                            <rect x="190" y="340" width="20" height="20" rx="5"/>
+                            <!-- Orejas del lazo -->
+                            <path d="M195 350 C160 320 140 370 190 355 Z"/>
+                            <path d="M205 350 C240 320 260 370 210 355 Z"/>
+                        </g>
+                    </svg>
+                </div>
+
+                <!-- CONTROLES -->
+                <div class="w-full lg:w-1/2 space-y-8">
+                    
+                    <!-- Opción 1: Rosa Principal -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                            <span class="bg-flor-100 text-flor-600 rounded-full w-6 h-6 flex items-center justify-center text-sm">1</span> 
+                            Color de la Rosa Principal
+                        </h3>
+                        <div class="flex gap-3 overflow-x-auto hide-scrollbar pb-2" id="controls-rosa">
+                            <!-- Los botones se generan por JS -->
+                        </div>
+                    </div>
+
+                    <!-- Opción 2: Flores Secundarias -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                            <span class="bg-flor-100 text-flor-600 rounded-full w-6 h-6 flex items-center justify-center text-sm">2</span> 
+                            Flores de Acompañamiento
+                        </h3>
+                        <div class="flex gap-3 overflow-x-auto hide-scrollbar pb-2" id="controls-secundarias"></div>
+                    </div>
+
+                    <!-- Opción 3: Envoltorio -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                            <span class="bg-flor-100 text-flor-600 rounded-full w-6 h-6 flex items-center justify-center text-sm">3</span> 
+                            Papel Envoltorio
+                        </h3>
+                        <div class="flex gap-3 overflow-x-auto hide-scrollbar pb-2" id="controls-envoltorio"></div>
+                    </div>
+
+                    <!-- Opción 4: Lazo -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                            <span class="bg-flor-100 text-flor-600 rounded-full w-6 h-6 flex items-center justify-center text-sm">4</span> 
+                            Color del Lazo
+                        </h3>
+                        <div class="flex gap-3 overflow-x-auto hide-scrollbar pb-2" id="controls-lazo"></div>
+                    </div>
+
+                    <div class="pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div>
+                            <p class="text-sm text-gray-500">Precio estimado</p>
+                            <p class="text-3xl font-serif font-bold text-gray-900">$45.00</p>
+                        </div>
+                        <button onclick="abrirCheckout()" class="w-full sm:w-auto bg-gray-900 text-white px-8 py-4 rounded-xl font-medium hover:bg-gray-800 transition-colors shadow-lg">
+                            Comprar mi Diseño
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section id="sobre-nosotros" class="py-20 bg-flor-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-8">Sobre Malumi</h2>
+            <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl flex flex-col md:flex-row items-center gap-8 text-left">
+                <img src="https://images.unsplash.com/photo-1596435661665-27a942a7da17?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Florista trabajando" class="w-full md:w-1/3 rounded-2xl object-cover h-64">
+                <div>
+                    <h3 class="text-2xl font-serif text-flor-600 mb-4">Arte y Pasión en cada pétalo</h3>
+                    <p class="text-gray-600 mb-4">
+                        Nacimos de la idea de que un regalo no debe ser genérico. En Malumi, somos un equipo de artesanos florales dedicados a traducir tus sentimientos en composiciones visuales deslumbrantes.
+                    </p>
+                    <p class="text-gray-600">
+                        Seleccionamos nuestras flores de los mejores cultivos locales diariamente, asegurando frescura y durabilidad. Nuestra misión es que cuando esa persona especial reciba su arreglo, sepa que fue creado exclusivamente para ella.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contacto -->
+    <footer id="contacto" class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <!-- Marca -->
+                <div>
+                    <h3 class="font-serif text-3xl font-bold text-flor-400 italic mb-4">Malumi</h3>
+                    <p class="text-gray-400">Transformando emociones en arte floral personalizado para tus momentos más especiales.</p>
+                </div>
+                <!-- Dirección -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">Encuéntranos</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-flor-400 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <span>Av. Las Rosas 1234, Local 5<br>Distrito Floral, Ciudad Primavera</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-flor-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            <span>+51 987 654 321</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-flor-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            <span>pedidos@Malumi.com</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Mapa Falso -->
+                <div class="bg-gray-800 rounded-xl flex items-center justify-center p-4 min-h-[200px]">
+                    <div class="text-center">
+                        <svg class="w-10 h-10 text-gray-500 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+                        <p class="text-sm text-gray-400">Mapa Interactivo<br>(Visualización en Tienda Real)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2024 Malumi. Todos los derechos reservados. Diseñado con ♥ para regalar sonrisas.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DE CHECKOUT (Simulación) -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black/60 z-[100] hidden flex items-center justify-center backdrop-blur-sm px-4">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="modal-content">
+            
+            <!-- Header Modal -->
+            <div class="bg-flor-50 px-6 py-4 border-b border-flor-100 flex justify-between items-center">
+                <h3 class="font-serif text-2xl font-bold text-gray-900">Finalizar Pedido</h3>
+                <button onclick="cerrarCheckout()" class="text-gray-400 hover:text-gray-700 transition-colors">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <!-- Body Modal (Formulario) -->
+            <div class="p-6">
+                <div class="bg-gray-50 rounded-xl p-4 mb-6 flex items-center gap-4 border border-gray-100">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm text-flor-500">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Tu diseño personalizado</p>
+                        <p class="font-bold text-gray-900">Total a pagar: $45.00</p>
+                    </div>
+                </div>
+
+                <form id="form-compra" onsubmit="procesarCompra(event)">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nombre de quien recibe</label>
+                            <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-flor-500 focus:border-flor-500 outline-none transition-shadow" placeholder="Ej. María Pérez">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Dirección de entrega</label>
+                            <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-flor-500 focus:border-flor-500 outline-none transition-shadow" placeholder="Calle, número, distrito">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Mensaje para la tarjeta (Opcional)</label>
+                            <textarea rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-flor-500 focus:border-flor-500 outline-none transition-shadow" placeholder="Escribe algo bonito..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <button type="submit" id="btn-submit" class="w-full bg-flor-600 text-white py-3 rounded-xl font-medium hover:bg-flor-700 transition-colors flex justify-center items-center gap-2">
+                            <span>Confirmar Pedido</span>
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Mensaje de Éxito (Oculto inicialmente) -->
+                <div id="mensaje-exito" class="hidden text-center py-8">
+                    <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">¡Pedido Confirmado!</h4>
+                    <p class="text-gray-600">Estamos preparando tu arreglo personalizado con mucho amor. Te llegará un correo con el seguimiento.</p>
+                    <button onclick="cerrarCheckout()" class="mt-6 text-flor-600 font-medium hover:underline">Volver al inicio</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS JAVASCRIPT -->
+    <script>
+        // CONFIGURACIÓN DE COLORES DISPONIBLES
+        const opcionesColores = {
+            rosa: [
+                { id: 'rojo', color: '#EF4444', nombre: 'Rojo Pasión' },
+                { id: 'rosa', color: '#EC4899', nombre: 'Rosa Pastel' },
+                { id: 'blanco', color: '#F9FAFB', nombre: 'Blanco Puro' },
+                { id: 'amarillo', color: '#FBBF24', nombre: 'Amarillo Sol' },
+                { id: 'morado', color: '#A855F7', nombre: 'Morado Real' },
+            ],
+            secundarias: [
+                { id: 'rosa-claro', color: '#FBCFE8', nombre: 'Rosita' },
+                { id: 'blanco', color: '#F3F4F6', nombre: 'Blanco Nube' },
+                { id: 'lila', color: '#E9D5FF', nombre: 'Lila' },
+                { id: 'melocoton', color: '#FED7AA', nombre: 'Melocotón' },
+            ],
+            envoltorio: [
+                { id: 'kraft', color: '#D4A373', colorFondo: '#C08D5D', nombre: 'Papel Kraft' },
+                { id: 'negro', color: '#374151', colorFondo: '#1F2937', nombre: 'Negro Elegante' },
+                { id: 'blanco', color: '#F3F4F6', colorFondo: '#E5E7EB', nombre: 'Blanco Nieve' },
+                { id: 'rosa', color: '#FCE7F3', colorFondo: '#FBCFE8', nombre: 'Rosa Suave' },
+                { id: 'celeste', color: '#E0F2FE', colorFondo: '#BAE6FD', nombre: 'Celeste Cielo' },
+            ],
+            lazo: [
+                { id: 'dorado', color: '#FBBF24', nombre: 'Dorado' },
+                { id: 'rojo', color: '#DC2626', nombre: 'Rojo' },
+                { id: 'crema', color: '#FEF3C7', nombre: 'Crema' },
+                { id: 'azul', color: '#3B82F6', nombre: 'Azul' },
+                { id: 'verde', color: '#10B981', nombre: 'Verde Esmeralda' },
+            ]
+        };
+
+        // Estado actual del customizador
+        const estadoSeleccion = {
+            rosa: '#EF4444',
+            secundarias: '#FBCFE8',
+            envoltorio: { front: '#F3F4F6', back: '#E5E7EB' },
+            lazo: '#FBBF24'
+        };
+
+        // Función para renderizar los botones de colores
+        function renderizarControles() {
+            // Rosa
+            const contRosa = document.getElementById('controls-rosa');
+            opcionesColores.rosa.forEach(opc => {
+                contRosa.appendChild(crearBotonColor('rosa', opc, opc.color === estadoSeleccion.rosa));
+            });
+
+            // Secundarias
+            const contSec = document.getElementById('controls-secundarias');
+            opcionesColores.secundarias.forEach(opc => {
+                contSec.appendChild(crearBotonColor('secundarias', opc, opc.color === estadoSeleccion.secundarias));
+            });
+
+            // Envoltorio
+            const contEnv = document.getElementById('controls-envoltorio');
+            opcionesColores.envoltorio.forEach(opc => {
+                contEnv.appendChild(crearBotonColor('envoltorio', opc, opc.color === estadoSeleccion.envoltorio.front));
+            });
+
+            // Lazo
+            const contLazo = document.getElementById('controls-lazo');
+            opcionesColores.lazo.forEach(opc => {
+                contLazo.appendChild(crearBotonColor('lazo', opc, opc.color === estadoSeleccion.lazo));
+            });
+        }
+
+        // Helper para crear los botones HTML
+        function crearBotonColor(parte, opcion, isActive) {
+            const btn = document.createElement('button');
+            const ringClass = isActive ? 'ring-2 ring-offset-2 ring-gray-800 scale-110' : 'ring-1 ring-gray-200 hover:scale-105';
+            
+            btn.className = `w-12 h-12 rounded-full flex-shrink-0 transition-all duration-200 cursor-pointer ${ringClass}`;
+            btn.style.backgroundColor = opcion.color;
+            btn.title = opcion.nombre;
+            
+            // Lógica al hacer clic
+            btn.onclick = () => actualizarColor(parte, opcion, btn);
+            return btn;
+        }
+
+        // Función para actualizar el SVG y el estado activo de los botones
+        function actualizarColor(parte, opcion, botonClicado) {
+            // 1. Actualizar SVG
+            if (parte === 'envoltorio') {
+                document.getElementById('svg-envoltorio-front').setAttribute('fill', opcion.color);
+                document.getElementById('svg-envoltorio-back').setAttribute('fill', opcion.colorFondo);
+            } else if (parte === 'rosa') {
+                document.getElementById('svg-rosa').setAttribute('fill', opcion.color);
+            } else if (parte === 'secundarias') {
+                document.getElementById('svg-secundarias').setAttribute('fill', opcion.color);
+            } else if (parte === 'lazo') {
+                document.getElementById('svg-lazo').setAttribute('fill', opcion.color);
+            }
+
+            // 2. Actualizar UI de botones (Quitar active al anterior, poner al nuevo)
+            const contenedor = document.getElementById(`controls-${parte}`);
+            const botones = contenedor.querySelectorAll('button');
+            botones.forEach(b => {
+                b.classList.remove('ring-2', 'ring-offset-2', 'ring-gray-800', 'scale-110');
+                b.classList.add('ring-1', 'ring-gray-200');
+            });
+
+            botonClicado.classList.remove('ring-1', 'ring-gray-200');
+            botonClicado.classList.add('ring-2', 'ring-offset-2', 'ring-gray-800', 'scale-110');
+        }
+
+        // --- LÓGICA DEL MODAL DE CHECKOUT ---
+        const modal = document.getElementById('checkout-modal');
+        const modalContent = document.getElementById('modal-content');
+        const form = document.getElementById('form-compra');
+        const msgExito = document.getElementById('mensaje-exito');
+
+        function abrirCheckout() {
+            // Resetear por si abren de nuevo
+            form.classList.remove('hidden');
+            msgExito.classList.add('hidden');
+            form.reset();
+            
+            modal.classList.remove('hidden');
+            // Pequeño delay para la animación
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function cerrarCheckout() {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Cerrar al hacer click afuera
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) cerrarCheckout();
+        });
+
+        // Simular proceso de pago
+        function procesarCompra(e) {
+            e.preventDefault(); // Evitar recarga
+            
+            const btnSubmit = document.getElementById('btn-submit');
+            const textoOriginal = btnSubmit.innerHTML;
+            
+            // Estado de "Cargando"
+            btnSubmit.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Procesando Pago...
+            `;
+            btnSubmit.disabled = true;
+
+            // Simular espera de 2 segundos (como si llamara a pasarela de pago)
+            setTimeout(() => {
+                form.classList.add('hidden');
+                msgExito.classList.remove('hidden');
+                btnSubmit.innerHTML = textoOriginal;
+                btnSubmit.disabled = false;
+            }, 2000);
+        }
+
+        // Iniciar la app al cargar la página
+        document.addEventListener('DOMContentLoaded', renderizarControles);
+    </script>
+</body>
+</html>
