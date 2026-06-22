@@ -17,13 +17,14 @@
                     },
                     colors: {
                         flor: {
-                            50: '#fdf2f8',
-                            100: '#fce7f3',
-                            200: '#fbcfe8',
-                            500: '#ec4899',
-                            600: '#db2777',
-                            700: '#be185d',
-                            900: '#831843',
+                            50: '#fcf8f6',   /* Fondo clarito basado en el crema */
+                            100: '#f7e6df',  /* Crema de la paleta - cajas suaves */
+                            200: '#f0d9ce',  
+                            400: '#ebbfa8',  /* Melocotón de la paleta - para iconos y detalles */
+                            500: '#d4a389',  /* Melocotón oscuro - para brillos */
+                            600: '#72650c',  /* Oliva de la paleta - COLOR PRINCIPAL (Botones, Logo) */
+                            700: '#5c520a',  /* Oliva oscuro - hover en botones */
+                            900: '#3d3606',  /* Oliva super oscuro - footer */
                         }
                     }
                 }
@@ -34,7 +35,7 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Estilos de las capas corregidos para evitar distorsión responsiva */
+        /* Estilos de las capas optimizados y limpios */
         .recolor-layer {
             position: absolute;
             inset: 0;
@@ -51,6 +52,9 @@
             -webkit-mask-repeat: no-repeat;
             mask-position: center;
             -webkit-mask-position: center;
+            
+            mask-mode: luminance;
+            -webkit-mask-mode: luminance;
         }
     </style>
 </head>
@@ -59,8 +63,11 @@
     <nav class="bg-white/90 backdrop-blur-md fixed w-full z-50 border-b border-flor-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 sm:h-20 items-center">
+                <!-- LOGO DE LA MARCA EN EL HEADER -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="font-serif text-2xl sm:text-3xl font-bold text-flor-600 italic">Malumi</a>
+                    <a href="#">
+                        <img src="Recurso 41.png" alt="Malumi Logo" class="h-8 sm:h-10 w-auto object-contain">
+                    </a>
                 </div>
                 <div class="hidden md:flex space-x-8">
                     <a href="#inicio" class="text-sm sm:text-base text-gray-600 hover:text-flor-500 transition-colors">Inicio</a>
@@ -101,51 +108,53 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8 sm:mb-12">
                 <h2 class="font-serif text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Crea tu Ramo Perfecto</h2>
-                <p class="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">Selecciona los colores de cada parte de tu regalo. La visualización cambiará en tiempo real respetando la iluminación natural.</p>
+                <p class="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">Selecciona el diseño y los colores de cada parte de tu regalo.</p>
             </div>
 
             <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start relative">
                 
+                <!-- VISUALIZADOR DE IMAGEN -->
                 <div class="w-full lg:w-1/2 lg:sticky lg:top-28 z-10">
                     <div class="bg-flor-50 rounded-2xl sm:rounded-3xl p-4 sm:p-8 flex justify-center items-center shadow-inner relative">
                         <div class="relative w-full max-w-[280px] sm:max-w-sm lg:max-w-md mx-auto rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl bg-gray-200">
                             <div class="absolute top-3 left-3 sm:top-4 sm:left-4 bg-white/90 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm text-xs sm:text-sm font-medium text-flor-600 z-30">Vista Previa Realista</div>
                             
-                            <img src="imagenbase.jpeg" alt="Ramo Base" class="block w-full h-auto relative z-0">
+                            <!-- IMAGEN BASE CON ID -->
+                            <img id="img-base" src="imagenbase.jpeg" alt="Ramo Base" class="block w-full h-auto relative z-0">
 
+                            <!-- CAPAS SIMPLIFICADAS -->
                             <div id="layer-envoltorio" class="recolor-layer z-10" 
-                                 style="background-color: #FCE7F3; 
-                                        mask-image: url('mask-envoltorio.png'); 
-                                        -webkit-mask-image: url('mask-envoltorio.png');
-                                        mask-mode: luminance;
-                                        -webkit-mask-mode: luminance;"></div>
+                                 style="background-color: #f7e6df; mask-image: url('mask-envoltorio.png'); -webkit-mask-image: url('mask-envoltorio.png');"></div>
                             
                             <div id="layer-secundarias" class="recolor-layer z-10" 
-                                 style="background-color: #FBCFE8; 
-                                        mask-image: url('mask-secundarias.png'); 
-                                        -webkit-mask-image: url('mask-secundarias.png');
-                                        mask-mode: luminance;
-                                        -webkit-mask-mode: luminance;"></div>
+                                 style="background-color: #f7e6df; mask-image: url('mask-secundarias.png'); -webkit-mask-image: url('mask-secundarias.png');"></div>
 
                             <div id="layer-rosa" class="recolor-layer z-10" 
-                                 style="background-color: #EF4444; 
-                                        mask-image: url('mask-rosa.png'); 
-                                        -webkit-mask-image: url('mask-rosa.png');
-                                        mask-mode: luminance;
-                                        -webkit-mask-mode: luminance;"></div>
+                                 style="background-color: #ebbfa8; mask-image: url('mask-rosa.png'); -webkit-mask-image: url('mask-rosa.png');"></div>
 
                             <div id="layer-lazo" class="recolor-layer z-10" 
-                                 style="background-color: #FBBF24; 
-                                        mask-image: url('mask-lazo.png'); 
-                                        -webkit-mask-image: url('mask-lazo.png');
-                                        mask-mode: luminance;
-                                        -webkit-mask-mode: luminance;"></div>
+                                 style="background-color: #72650c; mask-image: url('mask-lazo.png'); -webkit-mask-image: url('mask-lazo.png');"></div>
                         </div>
                     </div>
                 </div>
 
+                <!-- PANEL DE CONTROLES -->
                 <div class="w-full lg:w-1/2 space-y-6 sm:space-y-8 pt-4 lg:pt-0">
                     
+                    <!-- PASO 0: SELECTOR DE MODELO -->
+                    <div class="bg-gray-50 p-4 sm:p-5 rounded-2xl border border-gray-100">
+                        <h3 class="text-base sm:text-lg font-semibold mb-3 flex items-center gap-2 text-gray-800">
+                            <span class="bg-gray-800 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs sm:text-sm shadow-sm">0</span> 
+                            Elige el Diseño Base
+                        </h3>
+                        <div class="flex gap-2 sm:gap-3 overflow-x-auto hide-scrollbar pb-1">
+                            <button onclick="cambiarModelo(1)" id="btn-modelo-1" class="px-4 py-2 sm:py-2.5 rounded-xl border-2 border-flor-600 bg-flor-50 text-flor-600 font-semibold transition-all flex-shrink-0 shadow-sm text-sm sm:text-base">Detalle 1</button>
+                            <button onclick="cambiarModelo(2)" id="btn-modelo-2" class="px-4 py-2 sm:py-2.5 rounded-xl border-2 border-transparent bg-white text-gray-500 hover:bg-gray-100 font-medium transition-all flex-shrink-0 text-sm sm:text-base">Detalle 2</button>
+                            <button onclick="cambiarModelo(3)" id="btn-modelo-3" class="px-4 py-2 sm:py-2.5 rounded-xl border-2 border-transparent bg-white text-gray-500 hover:bg-gray-100 font-medium transition-all flex-shrink-0 text-sm sm:text-base">Detalle 3</button>
+                        </div>
+                    </div>
+
+                    <!-- Control 1: Rosa -->
                     <div>
                         <h3 class="text-base sm:text-lg font-semibold mb-3 flex items-center gap-2">
                             <span class="bg-flor-100 text-flor-600 rounded-full w-6 h-6 flex items-center justify-center text-xs sm:text-sm">1</span> 
@@ -154,6 +163,7 @@
                         <div class="flex gap-3 overflow-x-auto hide-scrollbar pb-2 sm:pb-4 snap-x snap-mandatory" id="controls-rosa"></div>
                     </div>
 
+                    <!-- Control 2: Flores Secundarias -->
                     <div>
                         <h3 class="text-base sm:text-lg font-semibold mb-3 flex items-center gap-2">
                             <span class="bg-flor-100 text-flor-600 rounded-full w-6 h-6 flex items-center justify-center text-xs sm:text-sm">2</span> 
@@ -162,6 +172,7 @@
                         <div class="flex gap-3 overflow-x-auto hide-scrollbar pb-2 sm:pb-4 snap-x snap-mandatory" id="controls-secundarias"></div>
                     </div>
 
+                    <!-- Control 3: Envoltorio -->
                     <div>
                         <h3 class="text-base sm:text-lg font-semibold mb-3 flex items-center gap-2">
                             <span class="bg-flor-100 text-flor-600 rounded-full w-6 h-6 flex items-center justify-center text-xs sm:text-sm">3</span> 
@@ -170,6 +181,7 @@
                         <div class="flex gap-3 overflow-x-auto hide-scrollbar pb-2 sm:pb-4 snap-x snap-mandatory" id="controls-envoltorio"></div>
                     </div>
 
+                    <!-- Control 4: Lazo -->
                     <div>
                         <h3 class="text-base sm:text-lg font-semibold mb-3 flex items-center gap-2">
                             <span class="bg-flor-100 text-flor-600 rounded-full w-6 h-6 flex items-center justify-center text-xs sm:text-sm">4</span> 
@@ -193,6 +205,7 @@
         </div>
     </section>
 
+    <!-- Sobre Nosotros -->
     <section id="sobre-nosotros" class="py-12 sm:py-20 bg-flor-50">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="font-serif text-3xl sm:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">Sobre Malumi</h2>
@@ -211,11 +224,13 @@
         </div>
     </section>
 
+    <!-- Footer / Contacto -->
     <footer id="contacto" class="bg-gray-900 text-white pt-12 sm:pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-12 mb-12">
-                <div class="text-center md:text-left">
-                    <h3 class="font-serif text-3xl font-bold text-flor-400 italic mb-4">Malumi</h3>
+                <div class="text-center md:text-left flex flex-col items-center md:items-start">
+                    <!-- LOGO DE LA MARCA EN EL FOOTER -->
+                    <img src="Recurso 41.png" alt="Malumi Logo" class="h-10 sm:h-12 w-auto object-contain mb-4 filter brightness-0 invert opacity-90">
                     <p class="text-sm sm:text-base text-gray-400">Transformando emociones en arte floral personalizado para tus momentos más especiales.</p>
                 </div>
                 <div>
@@ -239,11 +254,12 @@
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-6 sm:pt-8 text-center text-gray-500 text-xs sm:text-sm">
-                <p>&copy; 2026 Malumi. Todos los derechos reservados. Diseñado con ♥ para regalar sonrisas.</p>
+                <p>&copy; 2026 Malumi. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
+    <!-- MODAL DE CHECKOUT -->
     <div id="checkout-modal" class="fixed inset-0 bg-black/70 z-[100] hidden flex items-center justify-center backdrop-blur-sm px-4">
         <div class="bg-white rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden transform scale-95 opacity-0 transition-all duration-300 max-h-[90vh] flex flex-col" id="modal-content">
             
@@ -300,42 +316,105 @@
     </div>
 
     <script>
+        // DATOS DE LOS MODELOS DISPONIBLES
+        // Aquí debes asegurarte de que los nombres de los archivos correspondan con los que guardes.
+        const modelos = {
+            1: {
+                base: 'imagenbase.jpeg', // La foto del Detalle 1
+                maskEnvoltorio: 'mask-envoltorio.png',
+                maskSecundarias: 'mask-secundarias.png',
+                maskRosa: 'mask-rosa.png',
+                maskLazo: 'mask-lazo.png'
+            },
+            2: {
+                base: 'base.jpeg', // La foto del Detalle 2
+                maskEnvoltorio: 'mask2-envoltorio.png',
+                maskSecundarias: 'mask2-secundarias.png',
+                maskRosa: 'mask2-rosa.png',
+                maskLazo: 'mask2-lazo.png'
+            },
+            3: {
+                base: 'base2.jpeg', // La foto del Detalle 3
+                maskEnvoltorio: 'envoltorio2.jpeg',
+                maskSecundarias: 'follaje2.jpeg',
+                maskRosa: 'flor2.jpeg',
+                maskLazo: 'lazo2.jpeg'
+            }
+        };
+
         const opcionesColores = {
             rosa: [
+                { id: 'oliva', color: '#72650c', nombre: 'Oliva Elegante' },
+                { id: 'melocoton', color: '#ebbfa8', nombre: 'Melocotón' },
+                { id: 'crema', color: '#f7e6df', nombre: 'Crema Suave' },
                 { id: 'rojo', color: '#EF4444', nombre: 'Rojo Pasión' },
-                { id: 'rosa', color: '#EC4899', nombre: 'Rosa Pastel' },
                 { id: 'blanco', color: '#F9FAFB', nombre: 'Blanco Puro' },
-                { id: 'amarillo', color: '#FBBF24', nombre: 'Amarillo Sol' },
-                { id: 'morado', color: '#A855F7', nombre: 'Morado Real' },
             ],
             secundarias: [
-                { id: 'rosa-claro', color: '#FBCFE8', nombre: 'Rosita' },
+                { id: 'crema', color: '#f7e6df', nombre: 'Crema Suave' },
+                { id: 'melocoton', color: '#ebbfa8', nombre: 'Melocotón' },
+                { id: 'oliva', color: '#72650c', nombre: 'Oliva' },
                 { id: 'blanco', color: '#F3F4F6', nombre: 'Blanco Nube' },
-                { id: 'lila', color: '#E9D5FF', nombre: 'Lila' },
-                { id: 'melocoton', color: '#FED7AA', nombre: 'Melocotón' },
             ],
             envoltorio: [
-                { id: 'rosa', color: '#FCE7F3', nombre: 'Rosa Suave' },
+                { id: 'melocoton', color: '#ebbfa8', nombre: 'Papel Melocotón' },
+                { id: 'crema', color: '#f7e6df', nombre: 'Papel Crema' },
+                { id: 'oliva', color: '#72650c', nombre: 'Papel Oliva' },
                 { id: 'kraft', color: '#D4A373', nombre: 'Papel Kraft' },
                 { id: 'negro', color: '#374151', nombre: 'Negro Elegante' },
-                { id: 'blanco', color: '#F3F4F6', nombre: 'Blanco Nieve' },
-                { id: 'celeste', color: '#E0F2FE', nombre: 'Celeste Cielo' },
             ],
             lazo: [
+                { id: 'oliva', color: '#72650c', nombre: 'Lazo Oliva' },
+                { id: 'melocoton', color: '#ebbfa8', nombre: 'Lazo Melocotón' },
+                { id: 'crema', color: '#f7e6df', nombre: 'Lazo Crema' },
                 { id: 'dorado', color: '#FBBF24', nombre: 'Dorado' },
                 { id: 'rojo', color: '#DC2626', nombre: 'Rojo' },
-                { id: 'crema', color: '#FEF3C7', nombre: 'Crema' },
-                { id: 'azul', color: '#3B82F6', nombre: 'Azul' },
-                { id: 'verde', color: '#10B981', nombre: 'Verde Esmeralda' },
             ]
         };
 
         const estadoSeleccion = {
-            rosa: '#EF4444',
-            secundarias: '#FBCFE8',
-            envoltorio: '#FCE7F3',
-            lazo: '#FBBF24'
+            rosa: '#ebbfa8',
+            secundarias: '#f7e6df',
+            envoltorio: '#f7e6df',
+            lazo: '#72650c'
         };
+
+        // FUNCIÓN NUEVA: Cambiar entre Detalle 1, Detalle 2 y Detalle 3
+        function cambiarModelo(idModelo) {
+            const data = modelos[idModelo];
+            
+            // 1. Cambiar la imagen de fondo
+            document.getElementById('img-base').src = data.base;
+
+            // 2. Cambiar las 4 rutas de las máscaras
+            const envoltorio = document.getElementById('layer-envoltorio');
+            envoltorio.style.maskImage = `url('${data.maskEnvoltorio}')`;
+            envoltorio.style.webkitMaskImage = `url('${data.maskEnvoltorio}')`;
+
+            const secundarias = document.getElementById('layer-secundarias');
+            secundarias.style.maskImage = `url('${data.maskSecundarias}')`;
+            secundarias.style.webkitMaskImage = `url('${data.maskSecundarias}')`;
+
+            const rosa = document.getElementById('layer-rosa');
+            rosa.style.maskImage = `url('${data.maskRosa}')`;
+            rosa.style.webkitMaskImage = `url('${data.maskRosa}')`;
+
+            const lazo = document.getElementById('layer-lazo');
+            lazo.style.maskImage = `url('${data.maskLazo}')`;
+            lazo.style.webkitMaskImage = `url('${data.maskLazo}')`;
+
+            // 3. Actualizar la apariencia de los botones del Selector
+            [1, 2, 3].forEach(num => {
+                const btn = document.getElementById(`btn-modelo-${num}`);
+                if(num === idModelo) {
+                    btn.classList.add('border-flor-600', 'bg-flor-50', 'text-flor-600', 'font-semibold');
+                    btn.classList.remove('border-transparent', 'bg-white', 'text-gray-500', 'font-medium');
+                } else {
+                    btn.classList.remove('border-flor-600', 'bg-flor-50', 'text-flor-600', 'font-semibold');
+                    btn.classList.add('border-transparent', 'bg-white', 'text-gray-500', 'font-medium');
+                }
+            });
+        }
 
         function renderizarControles() {
             const contRosa = document.getElementById('controls-rosa');
@@ -355,7 +434,6 @@
             const btn = document.createElement('button');
             const ringClass = isActive ? 'ring-2 ring-offset-2 ring-gray-800 scale-110' : 'ring-1 ring-gray-200 hover:scale-105';
             
-            // "snap-center" asegura que el botón se detenga en el centro de la pantalla al hacer scroll en celulares
             btn.className = `w-10 h-10 sm:w-12 sm:h-12 rounded-full flex-shrink-0 transition-all duration-200 cursor-pointer snap-center ${ringClass}`;
             btn.style.backgroundColor = opcion.color;
             btn.title = opcion.nombre;
