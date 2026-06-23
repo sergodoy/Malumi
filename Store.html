@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Phosphor Icons (Iconos elegantes para Redes Sociales) -->
+    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <script>
@@ -133,7 +133,7 @@
                                  style="background-color: #f7e6df; mask-image: url('mask-secundarias.png'); -webkit-mask-image: url('mask-secundarias.png');"></div>
 
                             <div id="layer-rosa" class="recolor-layer z-10" 
-                                 style="background-color: #ebbfa8; mask-image: url('mask-rosa.png'); -webkit-mask-image: url('mask-rosa.png');"></div>
+                                 style="background-color: #EC4899; mask-image: url('mask-rosa.png'); -webkit-mask-image: url('mask-rosa.png');"></div>
 
                             <div id="layer-lazo" class="recolor-layer z-10" 
                                  style="background-color: #72650c; mask-image: url('mask-lazo.png'); -webkit-mask-image: url('mask-lazo.png');"></div>
@@ -144,7 +144,7 @@
                 <!-- PANEL DE CONTROLES -->
                 <div class="w-full lg:w-1/2 space-y-6 sm:space-y-8 pt-4 lg:pt-0">
                     
-                    <!-- PASO 1: SELECTOR DE TAMAÑO/MODELO UNIFICADO -->
+                    <!-- PASO 1: SELECTOR DE TAMAÑO -->
                     <div class="bg-gray-50 p-4 sm:p-5 rounded-2xl border border-gray-100">
                         <h3 class="text-base sm:text-lg font-semibold mb-3 flex items-center gap-2 text-gray-800">
                             <span class="bg-gray-800 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs sm:text-sm shadow-sm">1</span> 
@@ -170,7 +170,7 @@
                         </div>
                     </div>
 
-                    <!-- LOS COLORES -->
+                    <!-- COLORES -->
                     <div>
                         <h3 class="text-base sm:text-lg font-semibold mb-3 flex items-center gap-2">
                             <span class="bg-flor-100 text-flor-600 rounded-full w-6 h-6 flex items-center justify-center text-xs sm:text-sm">2</span> 
@@ -248,9 +248,7 @@
                     <img src="Recurso 41.png" alt="Malumi Logo" class="h-10 sm:h-12 w-auto object-contain mb-6 filter brightness-0 invert opacity-90">
                     <p class="text-sm sm:text-base text-gray-400 mb-6 max-w-xs">Transformando emociones en arte floral personalizado para tus momentos más especiales.</p>
                     
-                    <!-- ENLACES DE REDES SOCIALES -->
                     <div class="flex gap-4">
-                        <!-- Reemplaza los "#" por tus links reales -->
                         <a href="https://www.instagram.com/_malumi_detall?igsh=MWZ5Nzhnc3N3aHVwZw==" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-flor-600 hover:text-white transition-all">
                             <i class="ph ph-instagram-logo text-xl"></i>
                         </a>
@@ -296,8 +294,8 @@
     </footer>
 
     <!-- MODAL DE CHECKOUT -->
-    <div id="checkout-modal" class="fixed inset-0 bg-black/70 z-[100] hidden flex items-center justify-center backdrop-blur-sm px-4">
-        <div class="bg-white rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden transform scale-95 opacity-0 transition-all duration-300 max-h-[90vh] flex flex-col" id="modal-content">
+    <div id="checkout-modal" class="fixed inset-0 bg-black/70 z-[100] hidden flex items-center justify-center backdrop-blur-sm px-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden transform scale-95 transition-all duration-300 max-h-[90vh] flex flex-col" id="modal-content">
             
             <div class="bg-flor-50 px-4 sm:px-6 py-4 border-b border-flor-100 flex justify-between items-center shrink-0">
                 <h3 class="font-serif text-xl sm:text-2xl font-bold text-gray-900">Finalizar Pedido</h3>
@@ -351,6 +349,21 @@
         </div>
     </div>
 
+    <!-- MODAL DEL BANNER INICIAL -->
+    <div id="banner-modal" class="fixed inset-0 bg-black/80 z-[200] hidden flex items-center justify-center backdrop-blur-sm px-4 opacity-0 transition-opacity duration-300">
+        <div class="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-md overflow-hidden transform scale-95 transition-all duration-300" id="banner-content">
+            
+            <!-- Botón de Cerrar (X) Flotante -->
+            <button onclick="cerrarBannerInicial()" class="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-white/90 backdrop-blur-md rounded-full w-8 h-8 flex items-center justify-center text-gray-800 hover:text-flor-600 transition-colors shadow-md">
+                <i class="ph ph-x text-lg font-bold"></i>
+            </button>
+            
+            <!-- La imagen del banner -->
+            <img src="banner.png" alt="Promoción Especial Malumi" class="w-full h-auto object-cover max-h-[85vh]">
+            
+        </div>
+    </div>
+
     <script>
         // CONFIGURACIÓN DE PRECIOS POR TAMAÑO
         const preciosTamanos = {
@@ -362,42 +375,39 @@
 
         // Estado Global
         const estadoActual = {
-            tamanoId: 'pequeno', // Tamaño por defecto
+            tamanoId: 'pequeno', 
             colores: {
-                rosa: '#ebbfa8',
-                secundarias: '#f7e6df',
-                envoltorio: '#f7e6df',
-                lazo: '#72650c'
+                rosa: '#EC4899', 
+                secundarias: '#f7e6df', 
+                envoltorio: '#f7e6df', 
+                lazo: '#72650c' 
             }
         };
 
-        // MODELOS UNIFICADOS A TAMAÑOS
-        // Cada clave corresponde a un ID de tamaño. 
-        // ¡IMPORTANTE! Asegúrate que estos archivos existan en tu carpeta.
         const modelos = {
             'mini': {
-                base: 'base3.jpeg', // Foto para el ramo Mini
+                base: 'base3.jpeg', 
                 maskEnvoltorio: 'envol3.jpeg',
                 maskSecundarias: 'llaje3.jpeg',
                 maskRosa: 'flor3.jpeg',
-                maskLazo: 'lazo.jpeg'
+                maskLazo: 'lazo3.jpeg'
             },
             'pequeno': {
-                base: 'base4.jpeg', // Foto para el ramo Pequeño
+                base: 'base4.jpeg', 
                 maskEnvoltorio: 'envol4.jpeg',
                 maskSecundarias: 'llaje4.jpeg',
                 maskRosa: 'flor4.jpeg',
                 maskLazo: 'lazo4.jpeg'
             },
             'mediano': {
-                base: 'base5.jpeg', // Foto para el ramo Mediano
+                base: 'base5.jpeg', 
                 maskEnvoltorio: 'envol5.jpeg',
                 maskSecundarias: 'llaje5.jpeg',
                 maskRosa: 'flor5.jpeg',
                 maskLazo: 'lazo55.jpeg'
             },
             'grande': {
-                base: 'base6.jpeg', // Foto para el ramo Grande
+                base: 'base6.jpeg', 
                 maskEnvoltorio: 'envol6.jpeg',
                 maskSecundarias: 'llaje6.jpeg',
                 maskRosa: 'flor6.jpeg',
@@ -407,36 +417,34 @@
 
         const opcionesColores = {
             rosa: [
-                { id: 'rosa', color: '#EC4899', nombre: 'Rosa' },
-                { id: 'rojo', color: '#EF4444', nombre: 'Rojo' },
-                { id: 'amarillo', color: '#FBBF24', nombre: 'Amarillo' },
+                { id: 'rosa', color: '#EC4899', nombre: 'Rosa Pastel' },
+                { id: 'rojo', color: '#EF4444', nombre: 'Rojo Pasión' },
+                { id: 'amarillo', color: '#FBBF24', nombre: 'Amarillo Sol' },
                 { id: 'azul', color: '#3B82F6', nombre: 'Azul' },
             ],
             secundarias: [
-                { id: 'rosa', color: '#EC4899', nombre: 'Rosa' },
-                { id: 'rojo', color: '#EF4444', nombre: 'Rojo' },
-                { id: 'amarillo', color: '#FBBF24', nombre: 'Amarillo' },
+                { id: 'rosa', color: '#EC4899', nombre: 'Rosa Pastel' },
+                { id: 'rojo', color: '#EF4444', nombre: 'Rojo Pasión' },
+                { id: 'amarillo', color: '#FBBF24', nombre: 'Amarillo Sol' },
                 { id: 'azul', color: '#3B82F6', nombre: 'Azul' },
             ],
             envoltorio: [
-                { id: 'rosa', color: '#EC4899', nombre: 'Rosa' },
-                { id: 'rojo', color: '#EF4444', nombre: 'Rojo' },
-                { id: 'amarillo', color: '#FBBF24', nombre: 'Amarillo' },
+                { id: 'rosa', color: '#EC4899', nombre: 'Rosa Pastel' },
+                { id: 'rojo', color: '#EF4444', nombre: 'Rojo Pasión' },
+                { id: 'amarillo', color: '#FBBF24', nombre: 'Amarillo Sol' },
                 { id: 'azul', color: '#3B82F6', nombre: 'Azul' },
             ],
             lazo: [
-                { id: 'rosa', color: '#EC4899', nombre: 'Rosa' },
-                { id: 'rojo', color: '#EF4444', nombre: 'Rojo' },
-                { id: 'amarillo', color: '#FBBF24', nombre: 'Amarillo' },
+                { id: 'rosa', color: '#EC4899', nombre: 'Rosa Pastel' },
+                { id: 'rojo', color: '#EF4444', nombre: 'Rojo Pasión' },
+                { id: 'amarillo', color: '#FBBF24', nombre: 'Amarillo Sol' },
                 { id: 'azul', color: '#3B82F6', nombre: 'Azul' },
             ]
         };
 
-        // LÓGICA UNIFICADA: CAMBIA PRECIO + IMAGEN DE FONDO + MÁSCARAS
         function cambiarTamano(tamanoId) {
             estadoActual.tamanoId = tamanoId;
             
-            // --- 1. Actualizar Precios y Textos ---
             const precioStr = preciosTamanos[tamanoId].toFixed(2);
             document.getElementById('precio-total').innerText = precioStr;
             document.getElementById('resumen-precio').innerText = precioStr;
@@ -444,7 +452,6 @@
             const nombres = { 'mini': 'Mini', 'pequeno': 'Pequeño', 'mediano': 'Mediano', 'grande': 'Grande' };
             document.getElementById('resumen-detalle').innerText = `Ramo ${nombres[tamanoId]} Personalizado`;
 
-            // --- 2. Actualizar Botones de Tamaño (UI) ---
             const idsBotones = ['mini', 'pequeno', 'mediano', 'grande'];
             idsBotones.forEach(id => {
                 const btn = document.getElementById(`btn-tamano-${id}`);
@@ -463,18 +470,14 @@
                 }
             });
 
-            // --- 3. Actualizar la Foto y las Máscaras ---
             const dataModelo = modelos[tamanoId];
             const imgBase = document.getElementById('img-base');
             
-            // Pequeña animación de transición
             imgBase.classList.add('opacity-0');
             
             setTimeout(() => {
-                // Cambiar foto base
                 imgBase.src = dataModelo.base;
                 
-                // Cambiar máscaras
                 document.getElementById('layer-envoltorio').style.maskImage = `url('${dataModelo.maskEnvoltorio}')`;
                 document.getElementById('layer-envoltorio').style.webkitMaskImage = `url('${dataModelo.maskEnvoltorio}')`;
 
@@ -487,7 +490,6 @@
                 document.getElementById('layer-lazo').style.maskImage = `url('${dataModelo.maskLazo}')`;
                 document.getElementById('layer-lazo').style.webkitMaskImage = `url('${dataModelo.maskLazo}')`;
 
-                // Quitar la animación para mostrar la nueva foto
                 imgBase.classList.remove('opacity-0');
             }, 300);
         }
@@ -505,7 +507,6 @@
             const contLazo = document.getElementById('controls-lazo');
             opcionesColores.lazo.forEach(opc => { contLazo.appendChild(crearBotonColor('lazo', opc, opc.color === estadoActual.colores.lazo)); });
             
-            // Inicializar con el tamaño por defecto ("pequeno")
             cambiarTamano(estadoActual.tamanoId);
         }
 
@@ -521,7 +522,7 @@
         }
 
         function actualizarColor(parte, opcion, botonClicado) {
-            estadoActual.colores[parte] = opcion.color; // Guardar estado
+            estadoActual.colores[parte] = opcion.color; 
             
             const layerId = `layer-${parte}`;
             const layerElement = document.getElementById(layerId);
@@ -537,8 +538,9 @@
             botonClicado.classList.add('ring-2', 'ring-offset-2', 'ring-flor-600', 'scale-110');
         }
 
-        const modal = document.getElementById('checkout-modal');
-        const modalContent = document.getElementById('modal-content');
+        // LÓGICA DEL CHECKOUT
+        const modalCheckout = document.getElementById('checkout-modal');
+        const modalContentCheckout = document.getElementById('modal-content');
         const form = document.getElementById('form-compra');
         const msgExito = document.getElementById('mensaje-exito');
 
@@ -546,20 +548,23 @@
             form.classList.remove('hidden');
             msgExito.classList.add('hidden');
             form.reset();
-            modal.classList.remove('hidden');
+            modalCheckout.classList.remove('hidden');
             setTimeout(() => {
-                modalContent.classList.remove('scale-95', 'opacity-0');
-                modalContent.classList.add('scale-100', 'opacity-100');
+                modalCheckout.classList.remove('opacity-0');
+                modalContentCheckout.classList.remove('scale-95');
+                modalContentCheckout.classList.add('scale-100');
             }, 10);
         }
 
         function cerrarCheckout() {
-            modalContent.classList.remove('scale-100', 'opacity-100');
-            modalContent.classList.add('scale-95', 'opacity-0');
-            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+            modalCheckout.classList.add('opacity-0');
+            modalContentCheckout.classList.remove('scale-100');
+            modalContentCheckout.classList.add('scale-95');
+            setTimeout(() => { modalCheckout.classList.add('hidden'); }, 300);
         }
 
-        modal.addEventListener('click', (e) => { if (e.target === modal) cerrarCheckout(); });
+        // Cierra dando clic fuera
+        modalCheckout.addEventListener('click', (e) => { if (e.target === modalCheckout) cerrarCheckout(); });
 
         function procesarCompra(e) {
             e.preventDefault();
@@ -575,7 +580,36 @@
             }, 1500);
         }
 
-        document.addEventListener('DOMContentLoaded', renderizarControles);
+        // LÓGICA DEL BANNER PROMOCIONAL INICIAL
+        const bannerModal = document.getElementById('banner-modal');
+        const bannerContent = document.getElementById('banner-content');
+
+        function abrirBannerInicial() {
+            bannerModal.classList.remove('hidden');
+            setTimeout(() => {
+                bannerModal.classList.remove('opacity-0');
+                bannerContent.classList.remove('scale-95');
+                bannerContent.classList.add('scale-100');
+            }, 50);
+        }
+
+        function cerrarBannerInicial() {
+            bannerModal.classList.add('opacity-0');
+            bannerContent.classList.remove('scale-100');
+            bannerContent.classList.add('scale-95');
+            setTimeout(() => { bannerModal.classList.add('hidden'); }, 300);
+        }
+
+        // Cierra dando clic fuera de la imagen
+        bannerModal.addEventListener('click', (e) => { if (e.target === bannerModal) cerrarBannerInicial(); });
+
+        // INICIALIZACIÓN GENERAL
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarControles();
+            
+            // Aparece el banner promocional medio segundo después de cargar la web
+            setTimeout(abrirBannerInicial, 500); 
+        });
     </script>
 </body>
 </html>
