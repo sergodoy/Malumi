@@ -105,7 +105,7 @@
             <div class="absolute inset-0 bg-flor-200 rounded-full blur-3xl opacity-50"></div>
             <img src="banner10.png" 
                  alt="Hermoso arreglo floral" 
-                 class="relative z-10 rounded-2xl sm:rounded-3xl shadow-2xl object-cover h-[300px] sm:h-[400px] lg:h-[500px] w-full">
+                class="relative z-10 rounded-2xl sm:rounded-3xl shadow-2xl object-cover h-[300px] sm:h-[400px] lg:h-[500px] w-full">
         </div>
     </section>
 
@@ -295,57 +295,110 @@
         </div>
     </footer>
 
-    <!-- MODAL DE CHECKOUT -->
+    <!-- MODAL DE CHECKOUT (PASARELA SIMULADA) -->
     <div id="checkout-modal" class="fixed inset-0 bg-black/70 z-[100] hidden flex items-center justify-center backdrop-blur-sm px-4 opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden transform scale-95 transition-all duration-300 max-h-[90vh] flex flex-col" id="modal-content">
+        <div class="bg-gray-50 rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden transform scale-95 transition-all duration-300 max-h-[90vh] flex flex-col" id="modal-content">
             
-            <div class="bg-flor-50 px-4 sm:px-6 py-4 border-b border-flor-100 flex justify-between items-center shrink-0">
-                <h3 class="font-serif text-xl sm:text-2xl font-bold text-gray-900">Finalizar Pedido</h3>
+            <div class="bg-white px-4 sm:px-6 py-4 border-b border-gray-200 flex justify-between items-center shrink-0">
+                <h3 class="font-serif text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <i class="ph ph-shopping-bag text-flor-600"></i> Finalizar Pedido
+                </h3>
                 <button onclick="cerrarCheckout()" class="text-gray-400 hover:text-gray-700 transition-colors p-1">
                     <i class="ph ph-x text-2xl"></i>
                 </button>
             </div>
             
             <div class="p-4 sm:p-6 overflow-y-auto">
-                <div class="bg-gray-50 rounded-xl p-4 mb-6 flex items-center gap-4 border border-gray-200">
-                    <div class="w-12 h-12 shrink-0 bg-white rounded-full flex items-center justify-center shadow-sm text-flor-600">
-                        <i class="ph ph-flower-lotus text-2xl"></i>
-                    </div>
+                <div class="bg-white rounded-xl p-4 mb-6 flex justify-between items-center shadow-sm border border-gray-100">
                     <div>
                         <p class="text-xs sm:text-sm text-gray-500 font-medium" id="resumen-detalle">Ramo Pequeño Personalizado</p>
-                        <p class="text-lg sm:text-xl font-bold text-gray-900">S/ <span id="resumen-precio">48.00</span></p>
+                        <p class="text-lg sm:text-xl font-bold text-gray-900">Total: S/ <span id="resumen-precio">48.00</span></p>
+                    </div>
+                    <div class="w-12 h-12 shrink-0 bg-flor-50 rounded-full flex items-center justify-center text-flor-600">
+                        <i class="ph ph-flower-lotus text-2xl"></i>
                     </div>
                 </div>
                 
                 <form id="form-compra" onsubmit="procesarCompra(event)">
+                    <!-- Datos de envío -->
                     <div class="space-y-4">
+                        <h4 class="text-sm font-semibold text-gray-900 border-b pb-2">Información de Envío</h4>
+                        
                         <div>
-                            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Nombre de quien recibe</label>
-                            <input type="text" required class="w-full px-4 py-2.5 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-flor-500 outline-none" placeholder="Ej. María Pérez">
+                            <input type="text" required class="w-full px-4 py-2.5 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-flor-500 outline-none bg-white transition-all" placeholder="Nombre de quien recibe">
                         </div>
                         <div>
-                            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Celular de contacto</label>
-                            <input type="tel" required class="w-full px-4 py-2.5 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-flor-500 outline-none" placeholder="987 654 321">
+                            <input type="tel" required class="w-full px-4 py-2.5 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-flor-500 outline-none bg-white transition-all" placeholder="Celular de contacto (Ej. 987 654 321)">
                         </div>
                         <div>
-                            <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Mensaje para la tarjeta (Opcional)</label>
-                            <textarea rows="3" class="w-full px-4 py-2.5 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-flor-500 outline-none" placeholder="Escribe algo bonito..."></textarea>
+                            <textarea rows="2" class="w-full px-4 py-2.5 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-flor-500 outline-none bg-white transition-all resize-none" placeholder="Mensaje para la tarjeta (Opcional)"></textarea>
                         </div>
                     </div>
-                    <div class="mt-8">
-                        <button type="submit" id="btn-submit" class="w-full bg-flor-600 text-white py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-medium hover:bg-flor-700 transition-colors shadow-lg shadow-flor-600/20">
-                            Enviar a WhatsApp
+
+                    <!-- PASARELA DE PAGO SIMULADA -->
+                    <div class="mt-6">
+                        <h4 class="text-sm font-semibold text-gray-900 border-b pb-2 flex items-center gap-2 mb-3">
+                            <i class="ph ph-credit-card text-flor-600 text-lg"></i>
+                            Pago Seguro
+                        </h4>
+                        
+                        <div class="border border-gray-300 rounded-xl overflow-hidden bg-white shadow-sm">
+                            <!-- Número de Tarjeta -->
+                            <div class="p-3 border-b border-gray-300 relative">
+                                <i class="ph ph-credit-card absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
+                                <input type="text" id="cc-number" required placeholder="Número de tarjeta" class="w-full pl-8 pr-16 outline-none text-sm sm:text-base bg-transparent" maxlength="19">
+                                <!-- Iconos de tarjetas falsos -->
+                                <div class="absolute right-3 top-1/2 -translate-y-1/2 flex gap-1 opacity-70">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Visa_Inc._logo_%282021%E2%80%93present%29.svg" class="h-3" alt="Visa">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-3" alt="Mastercard">
+                                </div>
+                            </div>
+                            
+                            <!-- Expiración y CVC -->
+                            <div class="flex">
+                                <div class="w-1/2 p-3 border-r border-gray-300 relative">
+                                    <input type="text" id="cc-exp" required placeholder="MM / AA" class="w-full outline-none text-sm sm:text-base bg-transparent" maxlength="7">
+                                </div>
+                                <div class="w-1/2 p-3 relative">
+                                    <input type="text" id="cc-cvc" required placeholder="CVC" class="w-full outline-none text-sm sm:text-base bg-transparent" maxlength="4">
+                                    <i class="ph ph-credit-card-back absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Nombre del Titular -->
+                        <div class="mt-3">
+                            <input type="text" required placeholder="Nombre en la tarjeta" class="w-full px-4 py-2.5 text-sm sm:text-base border border-gray-300 rounded-xl focus:ring-2 focus:ring-flor-500 outline-none bg-white transition-all">
+                        </div>
+                        
+                        <!-- Etiqueta de seguridad -->
+                        <div class="mt-3 flex items-center justify-center gap-1.5 text-xs text-gray-500 bg-green-50 py-1.5 rounded-lg border border-green-100">
+                            <i class="ph ph-lock-key text-green-600"></i>
+                            Los pagos son seguros y están encriptados
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <button type="submit" id="btn-submit" class="w-full bg-gray-900 text-white py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-semibold hover:bg-flor-600 transition-colors shadow-lg">
+                            <span id="btn-submit-text">Pagar S/ 48.00</span>
                         </button>
                     </div>
                 </form>
                 
-                <div id="mensaje-exito" class="hidden text-center py-8">
-                    <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="ph ph-check-circle text-3xl"></i>
+                <!-- PANTALLA DE ÉXITO -->
+                <div id="mensaje-exito" class="hidden text-center py-10">
+                    <div class="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-5 shadow-inner">
+                        <i class="ph ph-check text-4xl font-bold"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2">¡Redirigiendo!</h4>
-                    <p class="text-sm text-gray-600">Te estamos enviando a WhatsApp para coordinar el pago y entrega.</p>
-                    <button onclick="cerrarCheckout()" class="mt-6 text-sm font-medium text-flor-600 hover:underline">Volver a la tienda</button>
+                    <h4 class="text-2xl font-serif font-bold text-gray-900 mb-2">¡Pago Exitoso!</h4>
+                    <p class="text-sm sm:text-base text-gray-600 max-w-xs mx-auto mb-6">Tu pago ha sido procesado de manera segura. Estamos preparando tu hermoso arreglo personalizado.</p>
+                    
+                    <div class="bg-white border border-gray-200 rounded-xl p-4 mb-6 shadow-sm mx-auto text-left">
+                        <p class="text-xs text-gray-500 uppercase font-semibold mb-1">Número de orden</p>
+                        <p class="text-lg font-bold text-gray-900 font-mono tracking-wider">#MLM-9482</p>
+                    </div>
+
+                    <button onclick="cerrarCheckout()" class="w-full sm:w-auto px-8 py-3 bg-gray-100 text-gray-800 rounded-xl text-sm font-semibold hover:bg-gray-200 transition-colors">Volver a la tienda</button>
                 </div>
             </div>
         </div>
@@ -355,12 +408,10 @@
     <div id="banner-modal" class="fixed inset-0 bg-black/80 z-[200] hidden flex items-center justify-center backdrop-blur-sm px-4 opacity-0 transition-opacity duration-300">
         <div class="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-md overflow-hidden transform scale-95 transition-all duration-300" id="banner-content">
             
-            <!-- Botón de Cerrar (X) Flotante -->
             <button onclick="cerrarBannerInicial()" class="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-white/90 backdrop-blur-md rounded-full w-8 h-8 flex items-center justify-center text-gray-800 hover:text-flor-600 transition-colors shadow-md">
                 <i class="ph ph-x text-lg font-bold"></i>
             </button>
             
-            <!-- La imagen del banner -->
             <img src="banner.png" alt="Promoción Especial Malumi" class="w-full h-auto object-cover max-h-[85vh]">
             
         </div>
@@ -451,6 +502,9 @@
             document.getElementById('precio-total').innerText = precioStr;
             document.getElementById('resumen-precio').innerText = precioStr;
             
+            // Actualizar el botón de pago en la pasarela simulada
+            document.getElementById('btn-submit-text').innerText = `Pagar S/ ${precioStr}`;
+            
             const nombres = { 'mini': 'Mini', 'pequeno': 'Pequeño', 'mediano': 'Mediano', 'grande': 'Grande' };
             document.getElementById('resumen-detalle').innerText = `Ramo ${nombres[tamanoId]} Personalizado`;
 
@@ -540,7 +594,7 @@
             botonClicado.classList.add('ring-2', 'ring-offset-2', 'ring-flor-600', 'scale-110');
         }
 
-        // LÓGICA DEL CHECKOUT
+        // LÓGICA DEL CHECKOUT Y PASARELA SIMULADA
         const modalCheckout = document.getElementById('checkout-modal');
         const modalContentCheckout = document.getElementById('modal-content');
         const form = document.getElementById('form-compra');
@@ -565,22 +619,49 @@
             setTimeout(() => { modalCheckout.classList.add('hidden'); }, 300);
         }
 
-        // Cierra dando clic fuera
         modalCheckout.addEventListener('click', (e) => { if (e.target === modalCheckout) cerrarCheckout(); });
 
         function procesarCompra(e) {
             e.preventDefault();
             const btnSubmit = document.getElementById('btn-submit');
-            btnSubmit.innerHTML = '<i class="ph ph-spinner animate-spin text-xl"></i> Procesando...';
+            const originalText = document.getElementById('btn-submit-text').innerText;
+            
+            // Simular botón cargando
+            btnSubmit.innerHTML = '<i class="ph ph-circle-notch animate-spin text-xl"></i> Procesando pago seguro...';
             btnSubmit.disabled = true;
             
+            // Simular 2.5 segundos de red
             setTimeout(() => {
                 form.classList.add('hidden');
                 msgExito.classList.remove('hidden');
-                btnSubmit.innerHTML = 'Enviar a WhatsApp';
+                // Restaurar botón para futuras compras
+                btnSubmit.innerHTML = `<span id="btn-submit-text">${originalText}</span>`;
                 btnSubmit.disabled = false;
-            }, 1500);
+            }, 2500);
         }
+
+        // JS PARA FORMATEAR LA TARJETA (Le da un aspecto super real al tipear)
+        document.getElementById('cc-number').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, ''); // Quita letras
+            let formattedValue = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) formattedValue += ' ';
+                formattedValue += value[i];
+            }
+            e.target.value = formattedValue;
+        });
+
+        document.getElementById('cc-exp').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 2) {
+                value = value.substring(0, 2) + ' / ' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+
+        document.getElementById('cc-cvc').addEventListener('input', function (e) {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        });
 
         // LÓGICA DEL BANNER PROMOCIONAL INICIAL
         const bannerModal = document.getElementById('banner-modal');
@@ -602,16 +683,14 @@
             setTimeout(() => { bannerModal.classList.add('hidden'); }, 300);
         }
 
-        // Cierra dando clic fuera de la imagen
         bannerModal.addEventListener('click', (e) => { if (e.target === bannerModal) cerrarBannerInicial(); });
 
         // INICIALIZACIÓN GENERAL
         document.addEventListener('DOMContentLoaded', () => {
             renderizarControles();
-            
-            // Aparece el banner promocional medio segundo después de cargar la web
             setTimeout(abrirBannerInicial, 500); 
         });
     </script>
 </body>
 </html>
+```eof
